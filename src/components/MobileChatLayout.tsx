@@ -14,6 +14,7 @@ import { Session } from "next-auth";
 import { SidebarOption } from "@/types/typings";
 import { usePathname } from "next/navigation";
 
+//
 interface MobileChatLayoutProps {
   friends: User[];
   session: Session;
