@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, Fragment, useEffect, useState } from "react";
-import { Icons } from "./Icons";
+import { Icons } from "./icons";
 import SignOutButton from "./SignOutButton";
 import Button, { buttonVariants } from "./ui/Button";
 import FriendRequestSidebarOptions from "./FriendRequestSidebarOptions";
@@ -14,7 +14,6 @@ import { Session } from "next-auth";
 import { SidebarOption } from "@/types/typings";
 import { usePathname } from "next/navigation";
 
-//
 interface MobileChatLayoutProps {
   friends: User[];
   session: Session;

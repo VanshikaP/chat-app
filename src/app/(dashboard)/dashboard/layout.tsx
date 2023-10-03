@@ -1,4 +1,4 @@
-import { Icon, Icons } from "@/components/Icons";
+import { Icon, Icons } from "@/components/icons";
 import SignOutButton from "@/components/SignOutButton";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
