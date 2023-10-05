@@ -23,6 +23,9 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ friends, sessionId }) => {
   const [activeChats, setActiveChats] = useState<User[]>(friends);
 
   useEffect(() => {
+    pusherClient.connection.bind("connected", () => {
+      console.log("pusher connected");
+    });
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:chats`));
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`));
 
@@ -61,6 +64,7 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ friends, sessionId }) => {
 
       pusherClient.unbind("new_message", chatHandler);
       pusherClient.unbind("new_friend", newFriendHandler);
+      pusherClient.connection.unbind("connected", () => {});
     };
   }, [pathname, router, sessionId]);
 

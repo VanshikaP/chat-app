@@ -27,6 +27,9 @@ const FriendRequestSidebarOptions: FC<FriendRequestSidebarOptionsProps> = ({
   };
 
   useEffect(() => {
+    pusherClient.connection.bind("connected", () => {
+      console.log("pusher connected");
+    });
     pusherClient.subscribe(
       toPusherKey(`user:${sessionId}:incoming_friend_requests`)
     );
@@ -41,6 +44,7 @@ const FriendRequestSidebarOptions: FC<FriendRequestSidebarOptionsProps> = ({
       pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:friends`));
       pusherClient.unbind("incoming_friend_requests", friendRequestHandler);
       pusherClient.unbind("new_friend", addedFriendHandler);
+      pusherClient.connection.unbind("connected", () => {});
     };
   }, [sessionId]);
 

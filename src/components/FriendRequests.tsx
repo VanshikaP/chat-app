@@ -35,6 +35,9 @@ const FriendRequests: FC<FriendRequestsProps> = ({
   };
 
   useEffect(() => {
+    pusherClient.connection.bind("connected", () => {
+      console.log("pusher connected");
+    });
     pusherClient.subscribe(
       toPusherKey(`user:${sessionId}:incoming_friend_requests`)
     );
@@ -45,6 +48,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
         toPusherKey(`user:${sessionId}:incoming_friend_requests`)
       );
       pusherClient.unbind("incoming_friend_requests", friendRequestHandler);
+      pusherClient.connection.unbind("connected", () => {});
     };
   }, [sessionId]);
 
