@@ -31,9 +31,6 @@ const Messages: FC<MessagesProps> = ({
   };
 
   useEffect(() => {
-    pusherClient.connection.bind("connected", () => {
-      console.log("pusher connected");
-    });
     pusherClient.subscribe(toPusherKey(`chat:${chatId}`));
     pusherClient.bind("incoming_message", messageHandler);
 
@@ -42,7 +39,6 @@ const Messages: FC<MessagesProps> = ({
         toPusherKey(`user:${sessionId}:incoming_friend_requests`)
       );
       pusherClient.unbind("incoming_friend_requests", messageHandler);
-      pusherClient.connection.unbind("connected", () => {});
     };
   }, [chatId, sessionId]);
   return (
