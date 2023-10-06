@@ -14,6 +14,7 @@ interface SidebarChatListProps {
 interface ExtendedMessage extends Message {
   senderImg: string;
   senderName: string;
+  senderEmail: string;
 }
 
 const SidebarChatList: FC<SidebarChatListProps> = ({ friends, sessionId }) => {
